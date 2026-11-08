@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AZ-5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="brand"><span class="az">АЗ-5</span><span class="sub">CHERNOBYL NPP · UNIT 4 · BLOCK CONTROL ROOM</span></div>
+    <div class="clock"><span id="date">26.04.1986</span> <span id="time">00:00:00</span> <span id="ts"></span></div>
+    <div class="hdr-btns"><button id="muteBtn" title="Mute (M)">SOUND ON</button></div>
+  </header>
+  <main id="views">
+    <section class="view" id="vCR"><canvas></canvas><div class="lbl">БЩУ-4 · CONTROL ROOM</div></section>
+    <section class="view" id="vRX"><canvas></canvas><div class="lbl">РБМК-1000 · CORE SECTION (SIMULATED)</div></section>
+    <section class="view" id="vOUT"><canvas></canvas><div class="lbl">EXTERIOR · NORTH SIDE · NIGHT</div></section>
+  </main>
+  <footer id="dialog">
+    <div id="dlgMain">
+      <div id="who"></div>
+      <div id="text"></div>
+      <div id="choices"></div>
+    </div>
+    <div id="objective"><div class="olbl">TASK</div><div id="objText">—</div></div>
+  </footer>
+</div>
+
+<div id="overlay" class="show">
+  <div class="card">
+    <h1>АЗ-5</h1>
+    <h2>AZ-5</h2>
+    <p class="lead">26 April 1986. Chernobyl Nuclear Power Plant, Unit 4.<br>You are <b>Leonid Toptunov</b>, Senior Reactor Control Engineer.</p>
+    <p class="small">A dramatization based on the documented sequence of events (INSAG-7 and operator accounts). Dialogue is paraphrased. Sound on is recommended. Headphones help: the control room is on the left, the core in the middle, and the outside on the right.</p>
+    <button id="startBtn">BEGIN SHIFT</button>
+  </div>
+</div>
+
+<script src="js/util.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/sim.js"></script>
+<script src="js/view_control.js"></script>
+<script src="js/view_reactor.js"></script>
+<script src="js/view_outside.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

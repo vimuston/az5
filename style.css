@@ -1,0 +1,82 @@
+:root {
+  --bg: #060708;
+  --panel: #0c0f11;
+  --line: #1e262b;
+  --ink: #d9e0d2;
+  --dim: #7b8679;
+  --amber: #ffb43c;
+  --red: #ff3b2f;
+  --green: #7dffa6;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace; overflow: hidden; }
+#app { display: flex; flex-direction: column; height: 100vh; }
+
+header { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 6px 14px; border-bottom: 1px solid var(--line); background: #0a0c0d; }
+.brand { display: flex; align-items: baseline; gap: 14px; min-width: 0; }
+.brand .az { font-family: Oswald, Impact, sans-serif; font-weight: 700; font-size: 22px;
+  color: var(--red); letter-spacing: 2px; text-shadow: 0 0 10px rgba(255,59,47,.5); }
+.brand .sub { font-size: 11px; color: var(--dim); letter-spacing: 1px; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; }
+.clock { font-size: 20px; color: #ff5a3c; text-shadow: 0 0 8px rgba(255,80,40,.6);
+  font-variant-numeric: tabular-nums; white-space: nowrap; }
+.clock #date { color: var(--dim); font-size: 13px; text-shadow: none; }
+.clock #ts { font-size: 12px; color: var(--amber); text-shadow: none; margin-left: 6px; }
+.hdr-btns button, #choices button, .card button {
+  font: inherit; cursor: pointer; border: 1px solid #39444a; background: #141a1d; color: var(--ink);
+  padding: 4px 10px; font-size: 12px; letter-spacing: 1px; }
+.hdr-btns button:hover, #choices button:hover { background: #1f282c; border-color: var(--amber); }
+
+#views { flex: 1; display: flex; gap: 6px; padding: 6px; min-height: 0; }
+.view { flex: 1; position: relative; background: #000; border: 1px solid var(--line); min-width: 0; overflow: hidden; }
+.view canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+#vCR canvas { cursor: pointer; }
+.view .lbl { position: absolute; left: 8px; bottom: 6px; font-size: 10px; color: rgba(200,210,200,.45);
+  letter-spacing: 1.5px; pointer-events: none; }
+
+#dialog { min-height: 132px; display: flex; gap: 6px; padding: 0 6px 6px; }
+#dlgMain { flex: 1; background: var(--panel); border: 1px solid var(--line); padding: 10px 14px;
+  position: relative; cursor: pointer; overflow: hidden; }
+#who { font-family: Oswald, sans-serif; font-weight: 500; letter-spacing: 1.5px; font-size: 14px;
+  text-transform: uppercase; margin-bottom: 4px; min-height: 18px; }
+#text { font-size: 16px; line-height: 1.45; max-width: 1100px; min-height: 46px; }
+#text .caret { display: inline-block; width: 8px; background: var(--ink); animation: blink .7s steps(1) infinite; }
+#choices { display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+#choices button { font-size: 14px; padding: 6px 14px; border-color: var(--amber); color: var(--amber); }
+#objective { width: 300px; background: var(--panel); border: 1px solid var(--line); padding: 10px 12px; }
+#objective .olbl { font-size: 10px; letter-spacing: 2px; color: var(--dim); margin-bottom: 6px; }
+#objText { font-size: 14px; color: var(--amber); line-height: 1.4; }
+#objective.active { border-color: var(--amber); box-shadow: inset 0 0 18px rgba(255,180,60,.12); }
+@keyframes blink { 50% { opacity: 0; } }
+
+#overlay { position: fixed; inset: 0; background: rgba(0,0,0,.88); display: none; align-items: center;
+  justify-content: center; z-index: 10; padding: 16px; }
+#overlay.show { display: flex; }
+#overlay.fade { animation: fin 1.2s ease; }
+@keyframes fin { from { opacity: 0; } to { opacity: 1; } }
+.card { max-width: 720px; width: 100%; border: 1px solid #2a3338; background: #0b0e10; padding: 28px 32px;
+  box-shadow: 0 0 60px rgba(0,0,0,.8); }
+.card h1 { font-family: Oswald, Impact, sans-serif; font-size: 84px; margin: 0; color: var(--red); line-height: 1;
+  letter-spacing: 6px; text-shadow: 0 0 30px rgba(255,59,47,.45); }
+.card h2 { margin: 0 0 18px; font-weight: 400; color: var(--dim); letter-spacing: 8px; font-size: 14px; }
+.card h3 { font-family: Oswald, sans-serif; color: var(--amber); letter-spacing: 2px; font-weight: 500; margin: 0 0 12px; }
+.card p { line-height: 1.6; }
+.card .lead { font-size: 17px; }
+.card .small { font-size: 13px; color: var(--dim); }
+.card button { margin-top: 14px; font-size: 16px; padding: 10px 22px; border-color: var(--red); color: #fff;
+  background: #3a0d0a; letter-spacing: 3px; }
+.card button:hover { background: #5a1410; }
+.card .stamp { color: var(--amber); font-size: 13px; letter-spacing: 2px; }
+
+@media (max-width: 900px) {
+  html, body { overflow: auto; }
+  #app { height: auto; }
+  #views { flex-direction: column; }
+  .view { min-height: 118vw; flex: none; }
+  #dialog { position: sticky; bottom: 0; height: auto; flex-direction: column; background: var(--bg); padding-top: 6px; }
+  #objective { width: auto; }
+  .brand .sub { display: none; }
+  .card h1 { font-size: 56px; }
+}
